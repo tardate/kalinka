@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>kalinka - generate google calendar links</title>
+
+  <!-- jquery + Any+Time used for scripting and date picker -->
+	<link rel="stylesheet" type="text/css" href="vendor/anytime/anytime.css" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="vendor/anytime/anytime.js"></script>
+	<script type="text/javascript" src="vendor/anytime/anytimetz.js"></script>
+
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+
+  /* page styles */
+  body {
+    font:small Arial,Sans-serif;
+  }
+  h1,h2 {
+    margin-top:12px;
+    margin-bottom:12px;
+  }
+  .item {
+    background:none repeat scroll 0 0 #D2E6D2;
+    padding:4px 8px;
+  }
+  .item div.field {
+    padding:2px 0;
+    display:block;
+  }
+  .item div.text {
+    text-align:left;
+    display:block;
+    margin-left:6em;
+  }
+  .item label {
+    font-size:100%;
+    font-weight:bold;
+    clear:left;
+    float:left;
+  }
+  .item input.fullwidth, .item textarea {
+    max-width:650px;
+    width:90%;
+    border:1px solid #B2B2B2;
+  }
+  .mid {
+    padding:10px;
+  }
+  #inFromDate, #inToDate {
+    background-image:url("vendor/anytime/calendar.png");
+    background-position:right center;
+    background-repeat:no-repeat;
+    width:360px;
+  }
+
+  #makeGCalLink {
+     margin: 5px;
+     padding: 5px;
+     height:38px;
+     background:none repeat scroll 0 0 #F9F9F9;
+     border:1px solid #939393;
+     cursor:pointer;
+  }
+  .result {
+    background:#FAD163;
+  }
+
+</style>
+<script>
+
+var dateDisplayFormat = '%Z-%m-%d %H:%i %: %@';
+var gcalDateFormat = '%Y%m%dT%H%i%sZ';
+var defaultConv = new AnyTime.Converter({format:dateDisplayFormat});
+
+function formatCalDate(dtStr) {
+  try {
+    var date = defaultConv.parse(dtStr);
+    var gcalFmt = new AnyTime.Converter({format:gcalDateFormat,utcFormatOffsetImposed: 0});
+    return gcalFmt.format(date);
+  } catch(e) {
+    return '';
+  }
+}
+
+function makeGCalLink() {
+  var link;
+
+  link = 'http://www.google.com/calendar/event?action=TEMPLATE';
+  link += '&dates=' + encodeURIComponent( formatCalDate( $('#inFromDate').val() ) + '/' + formatCalDate( $('#inToDate').val() ) );
+  link += '&text=' + encodeURIComponent( $('#inTitle').val() );
+  link += '&location=' + encodeURIComponent( $('#inLocation').val() );
+  link += '&details=' + encodeURIComponent( $('#inDetails').val() );
+
+  $('a#outLink').text( link );
+  $('a#outLink').attr( 'href', link );
+  $('#outScript').text( link );
+
+}
+
+$(document).ready(function() {
+
+  var initFromTime = new Date();
+  initFromTime.setMinutes(60);
+  initToTime = new Date(initFromTime.getTime());
+  initToTime.setHours(initToTime.getHours() + 1 );
+
+  $("#inFromDate").val( defaultConv.format( initFromTime ) ).change();
+  $("#inToDate").val( defaultConv.format( initToTime ) ).change();
+
+  $('#inFromDate').AnyTime_picker( { format: dateDisplayFormat } );
+  $('#inToDate').AnyTime_picker( { earliest: initFromTime, format: dateDisplayFormat } );
+
+  $("#inFromDate").change(
+    function(e) {
+      try {
+
+        var earliestTime = defaultConv.parse($("#inFromDate").val());
+        var toTime = new Date(earliestTime);
+        toTime.setMinutes(toTime.getMinutes() + 60);
+
+        $("#inToDate").
+          AnyTime_noPicker().
+          val(defaultConv.format(toTime)).
+          AnyTime_picker(
+              { earliest: earliestTime,
+                format: dateDisplayFormat
+              } );
+
+      } catch(e){
+        $("#inToDate").val("");
+      }
+    }
+  );
+
+
+  $('#makeGCalLink').click(function() {
+    makeGCalLink();
+    return false;
+  });
+
+});
+
+</script>
+</head>
+<body>
+<h1>kalinka - Make a link for Google Calendar</h1>
+<p>
+This is a test and demonstration of <a href="http://www.ama3.com/anytime/">Any+Time jQuery Widget</a>, which was one of the tools covered in my "<a href="http://tardate.blogspot.com/2010/06/quick-survey-of-jquery-datetime-widgets.html">Quick Review of jQuery Date/Time Widgets</a>". The demo highlights the following features in particular:
+</p>
+<ul>
+<li>Date + time + timezone entry</li>
+<li>Enforcing 'earliest' entry (end time must be after start time)</li>
+<li>Date conversions and manipulation (see javascript source)</li>
+</ul>
+<p>
+The demo constructs Google Calendar Event URLs without needing to put an event in your own calendar.
+It basically just stuffs the details you enter below into a google.com/calendar/event with all the correct parameter encoding.
+You can then put the link in an email or a website. Other people can then use the link to create the event in their own Google Calendar.
+</p>
+<p>
+The Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher Guide</a>
+has a similar tool. The official documentation for the google.com/calendar/event parameters is
+<a href="http://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">available here</a>
+The LifeHacker article
+<a href="http://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">Supercharge Google Reader with Send To Links</a>
+was the main inspiration for this tool, and references some good sources of information.
+</p>
+
+<form autocomplete="off" name="kalinka">
+  <div class="item">
+  <h2>Event Details</h2>
+    <div class="field">
+      <label>From:</label>
+      <div class="text"><input type="text" id="inFromDate" /></div>
+    </div>
+    <div class="field">
+      <label>To:</label>
+      <div class="text"><input type="text" id="inToDate"/></div>
+    </div>
+    <div class="field">
+      <label>Title:</label>
+      <div class="text"><input type="text" id="inTitle" class="fullwidth" /></div>
+    </div>
+
+    <div class="field">
+      <label>Location:</label>
+      <div class="text"><input type="text" id="inLocation" class="fullwidth" /></div>
+    </div>
+    <div class="field">
+      <label>Details:</label>
+      <div class="text"><textarea id="inDetails" rows="5"></textarea></div>
+    </div>
+
+  </div>
+</form>
+
+<div class="mid">
+<span id="makeGCalLink">Make Google Calendar Link</span>
+</div>
+
+  <div class="item result">
+    <div class="field">
+      <label>Link:</label>
+      <div class="text"><a href="" id="outLink" target="_blank"></a>&nbsp;</div>
+    </div>
+
+    <div class="field">
+      <label>URL:</label>
+      <div class="text">
+<textarea id="outScript" rows="5">
+</textarea>
+      </div>
+    </div>
+  </div>
+
+
+<h2>References:</h2>
+<ul>
+<li><a href="http://tardate.blogspot.com/2010/06/quick-survey-of-jquery-datetime-widgets.html">Quick Review of jQuery Date/Time Widgets</a></li>
+<li><a href="http://www.ama3.com/anytime/">Any+Time</a></li>
+<li>Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher</a></li>
+<li>Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">Event Publisher URL Specification</a></li>
+<li><a href="http://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">LifeHacker article: Supercharge Google Reader with Send To Links</a></li>
+</ul>
+
+
+
+<p>
+<em><a href="http://tardate.com">tardate.com</a></em>
+</p>
+
+
+</body>
+</html>

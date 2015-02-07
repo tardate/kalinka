@@ -1,5 +1,13 @@
 # kalinka
 
+## Update
+
+This is a quick port of the original kalinka demo.
+Note that it still uses a (now) very old jQuery and version of Any+Time.
+Maybe it will get an update one day?
+
+## About
+
 kalinka: Google Calendar Link-maker and Any+Time jQuery demo
 
 Any+Time was one of the more interesting options I covered in my
@@ -13,8 +21,21 @@ kalinka mimics the basic functionality of the Google Calendar Event Publisher, e
 
 Try out [kalinka here](http://kalinka.tardate.com), and feel free to pillage the scripts.
 
-## Update
 
-This is a quick port of the original kalinka demo.
-Note that it still uses a (now) very old jQuery and version of Any+Time.
-Maybe it will get an update one day?
+## Sinatra Web App
+
+A sinatra web app is included in this repo for the purpose of hosting at [kalinka.tardate.com](http://kalinka.tardate.com).
+
+To run the app locally:
+
+    $ bundle install
+    $ ruby web_app.rb
+
+
+## Contributing
+
+1. Fork it ( https://github.com/tardate/kalinka/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request

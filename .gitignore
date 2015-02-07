@@ -2,3 +2,4 @@ node_modules
 .ruby*
 .rvmrc
 .grunt
+Gemfile.lock

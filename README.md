@@ -24,12 +24,29 @@ Try out [kalinka here](http://kalinka.tardate.com), and feel free to pillage the
 
 ## Sinatra Web App
 
-A sinatra web app is included in this repo for the purpose of hosting at [kalinka.tardate.com](http://kalinka.tardate.com).
+A sinatra web app is included in this repo for the purpose of hosting at providers like [heroku](http://heroku.com)..
 
 To run the app locally:
 
     $ bundle install
     $ ruby web_app.rb
+
+
+
+## Hosting
+
+I'm using GitHub Pages to host [kalinka.tardate.com](http://kalinka.tardate.com) directly from the GitHub repository.
+
+How does that work? GitHub Pages basically serves whatever you commit to the repo.
+For static HTML sites, that means simply adding an `index.html` to the root of the repo.
+
+GitHub now allows you to select the branch from which GitHub Pages are built.
+I've chosen to serve directly from the master branch.
+
+To host on a custom URL, just two steps:
+
+* in DNS, configure a CNAME to point to <username>.github.io
+* add a CNAME file to the repo root with the matching CNAME in DNS (GitHub does this for you automatically if you add the custom url in the web interface)
 
 
 ## Contributing

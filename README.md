@@ -30,8 +30,7 @@ To run the app locally:
 
     $ bundle install
     $ ruby web_app.rb
-
-
+    $ open http://localhost:4567
 
 ## Hosting
 

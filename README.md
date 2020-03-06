@@ -11,7 +11,7 @@ Maybe it will get an update one day?
 kalinka: Google Calendar Link-maker and Any+Time jQuery demo
 
 Any+Time was one of the more interesting options I covered in my
-[Quick Review of jQuery Date/Time Widgets](http://tardate.blogspot.com/2010/06/quick-survey-of-jquery-datetime-widgets.html).
+[Quick Review of jQuery Date/Time Widgets](https://blog.tardate.com/2010/06/quick-survey-of-jquery-datetime-widgets.html).
 
 Any+Time had a lot more functionality than I got to investigate at the time, and there were some specific features I wanted to checkout in more detail - in particular timezone handling - so I built another little demo called kalinka.
 

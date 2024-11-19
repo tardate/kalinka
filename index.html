@@ -21,7 +21,6 @@
     border: 0;
     z-index: 1000;
   }
-  /* page styles */
   body {
     font:small Arial,Sans-serif;
   }
@@ -62,7 +61,6 @@
     background-repeat:no-repeat;
     width:360px;
   }
-
   #makeGCalLink {
      margin: 5px;
      padding: 5px;
@@ -74,7 +72,6 @@
   .result {
     background:#FAD163;
   }
-
 </style>
 <script>
 
@@ -104,11 +101,9 @@ function makeGCalLink() {
   $('a#outLink').text( link );
   $('a#outLink').attr( 'href', link );
   $('#outScript').text( link );
-
 }
 
 $(document).ready(function() {
-
   var initFromTime = new Date();
   initFromTime.setMinutes(60);
   initToTime = new Date(initFromTime.getTime());
@@ -142,19 +137,15 @@ $(document).ready(function() {
     }
   );
 
-
   $('#makeGCalLink').click(function() {
     makeGCalLink();
     return false;
   });
-
 });
-
 </script>
 </head>
 <body>
-    <a class="forkme" href="https://github.com/tardate/kalinka"><img src="vendor/images/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
-
+<a class="forkme" href="https://github.com/tardate/kalinka"><img src="vendor/images/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 <h1>kalinka - Make a link for Google Calendar</h1>
 <p>
 This is a test and demonstration of <a href="http://www.ama3.com/anytime/">Any+Time jQuery Widget</a>, which was one of the tools covered in my "<a href="https://blog.tardate.com/2010/06/quick-survey-of-jquery-datetime-widgets.html">Quick Review of jQuery Date/Time Widgets</a>". The demo highlights the following features in particular:
@@ -170,11 +161,11 @@ It basically just stuffs the details you enter below into a google.com/calendar/
 You can then put the link in an email or a website. Other people can then use the link to create the event in their own Google Calendar.
 </p>
 <p>
-The Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher Guide</a>
+The Google Calendar <a href="https://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher Guide</a>
 has a similar tool. The official documentation for the google.com/calendar/event parameters is
-<a href="http://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">available here</a>
+<a href="https://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">available here</a>
 The LifeHacker article
-<a href="http://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">Supercharge Google Reader with Send To Links</a>
+<a href="https://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">Supercharge Google Reader with Send To Links</a>
 was the main inspiration for this tool, and references some good sources of information.
 </p>
 
@@ -229,12 +220,11 @@ was the main inspiration for this tool, and references some good sources of info
 <h2>References:</h2>
 <ul>
 <li><a href="https://blog.tardate.com/2010/06/quick-survey-of-jquery-datetime-widgets.html">Quick Review of jQuery Date/Time Widgets</a></li>
-<li><a href="http://www.ama3.com/anytime/">Any+Time</a></li>
-<li>Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher</a></li>
-<li>Google Calendar <a href="http://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">Event Publisher URL Specification</a></li>
-<li><a href="http://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">LifeHacker article: Supercharge Google Reader with Send To Links</a></li>
+<li><a href="https://www.ama3.com/anytime/">Any+Time</a></li>
+<li>Google Calendar <a href="https://www.google.com/googlecalendar/event_publisher_guide.html#individual" target="_blank">Event Publisher</a></li>
+<li>Google Calendar <a href="https://www.google.com/googlecalendar/event_publisher_guide_detail.html" target="_blank">Event Publisher URL Specification</a></li>
+<li><a href="https://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links">LifeHacker article: Supercharge Google Reader with Send To Links</a></li>
 </ul>
-
 
 </body>
 </html>

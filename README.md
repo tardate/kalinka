@@ -19,22 +19,21 @@ kalinka is a simple tool to construct Google Calendar Event URLs without needing
 
 kalinka mimics the basic functionality of the Google Calendar Event Publisher, except that it also demonstrates using Any+Time to offer specific control of the timezone.
 
-Try out [kalinka here](http://kalinka.tardate.com), and feel free to pillage the scripts.
-
+Try out [kalinka here](https://kalinka.tardate.com), and feel free to pillage the scripts.
 
 ## Sinatra Web App
 
-A sinatra web app is included in this repo for the purpose of hosting at providers like [heroku](http://heroku.com)..
+A sinatra web app is included in this repo for the purpose of running/testing locally..
 
 To run the app locally:
 
-    $ bundle install
-    $ ruby web_app.rb
-    $ open http://localhost:4567
+    bundle install
+    ruby app.rb
+    open http://localhost:4567
 
 ## Hosting
 
-I'm using GitHub Pages to host [kalinka.tardate.com](http://kalinka.tardate.com) directly from the GitHub repository.
+I'm using GitHub Pages to host [kalinka.tardate.com](https://kalinka.tardate.com) directly from the GitHub repository.
 
 How does that work? GitHub Pages basically serves whatever you commit to the repo.
 For static HTML sites, that means simply adding an `index.html` to the root of the repo.
@@ -47,10 +46,9 @@ To host on a custom URL, just two steps:
 * in DNS, configure a CNAME to point to <username>.github.io
 * add a CNAME file to the repo root with the matching CNAME in DNS (GitHub does this for you automatically if you add the custom url in the web interface)
 
-
 ## Contributing
 
-1. Fork it ( https://github.com/tardate/kalinka/fork )
+1. Fork it ( <https://github.com/tardate/kalinka/fork> )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

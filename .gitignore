@@ -1,2 +1,5 @@
 node_modules
 .grunt
+Gemfile.lock
+.DS_Store
+.vscode
